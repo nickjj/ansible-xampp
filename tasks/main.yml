@@ -1,0 +1,26 @@
+---
+- name: detect xampp installation
+  stat: path=/opt/lampp
+  register: xampp_installed
+
+- name: detect xampp version
+  shell: cat /opt/lampp/lib/VERSION
+  register: xampp_installed_version
+  when: xampp_installed.stat.exists
+
+- name: ensure xampp is downloaded
+  get_url: url=http://iweb.dl.sourceforge.net/project/xampp/XAMPP%20Linux/{{ xampp_version }}/{{ xampp_filename }} dest={{ xampp_temp_download_path }}
+  when: xampp_installed_version is undefined or not xampp_installed_version.stdout in xampp_filename
+  register: xampp_downloaded
+
+- name: ensure the file permission is set
+  file: path={{ xampp_temp_path }} mode=0755
+  when: xampp_downloaded.changed|default(False)
+
+- name: ensure xampp is installed
+  command: ./{{ xampp_filename }} chdir={{ xampp_temp_download_path }}
+  when: xampp_downloaded.changed|default(False)
+
+- name: ensure the temporary file is deleted
+  file: path={{ xampp_temp_path }} state=absent
+  when: xampp_downloaded.changed|default(False)

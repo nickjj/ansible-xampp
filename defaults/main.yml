@@ -1,0 +1,6 @@
+---
+xampp_version: 1.8.3
+xampp_filename: xampp-linux-{{ xampp_version }}-4-installer.run
+
+xampp_temp_download_path: /tmp
+xampp_temp_path: "{{ xampp_temp_download_path }}/{{ xampp_filename }}"
