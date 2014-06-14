@@ -47,9 +47,9 @@ xampp_filename: xampp-linux-x64-{{ xampp_version }}-4-installer.run
 
 ## Usage
 
-To start the server: `sudo /opt/lampp/lampp start`.
+To start the server: `sudo /opt/lampp/lampp start`
 
-To stop the server: `sudo /opt/lampp/lampp stop`.
+To stop the server: `sudo /opt/lampp/lampp stop`
 
 ## Installation
 
@@ -58,6 +58,10 @@ To stop the server: `sudo /opt/lampp/lampp stop`.
 ## Requirements
 
 Tested on ubuntu 12.04 LTS but it should work on other versions that are similar.
+
+## Ansible galaxy
+
+You can find it on the official [ansible galaxy](https://galaxy.ansible.com/list#/roles/1032) if you want to rate it.
 
 ## License
 
